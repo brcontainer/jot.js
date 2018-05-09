@@ -1,5 +1,5 @@
 /*
- * jot.js 0.0.1
+ * Jot.js 0.0.1
  *
  * Copyright (c) 2018 Guilherme Nascimento (brcontainer@yahoo.com.br)
  *
