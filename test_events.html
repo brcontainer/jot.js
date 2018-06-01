@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="jot.js"></script>
+    <script src="jotEvent.js"></script>
+
+
+    <script>
+
+        Object.defineProperty(Jot, 'element', {
+
+            writable: false,
+
+            value: function (element, context) {
+
+                var nodeList = [];
+
+                if (typeof element === 'string') {
+                    nodeList = this.qsa(element, context);
+                } else if (element instanceof HTMLElement) {
+                    nodeList = [element];
+                }
+                
+                return new JotEvent(nodeList);
+            }
+        })
+
+        Jot.ready(function () {
+
+            var boxs = Jot.element('.box');
+
+            boxs.each(function (index) {
+                
+                console.log(Jot.element(this))
+            })
+
+
+            boxs.on('click', function (e) {
+                
+                console.log(this)
+            })
+
+            // remover DATA-ID
+            boxs.attr({
+                a: 1,
+                b: 2, 
+                c: 3,
+                d: undefined
+            });
+
+            // com strings
+            boxs.attr('data-x', 'x');
+
+            // com callback
+
+            boxs.attr('data-x', function (value, element, index) {
+                
+                console.log(value, element, index)
+
+                // se não retornar nada, servirá apenas como "each" para o atributo
+                // se retornar, vai alterar o atributo
+                
+                return 'pos-' + index;
+            });
+
+            boxs.prop('innerText', function (el, value, index) {
+                return 'Elemento na posição ($)'.replace('$', index);
+            });
+            
+        })
+    </script>
+
+    <style>
+        .box {
+            height: 50px;
+            background-color: steelblue;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body data-id="1">
+    
+    <div data-id='1' class="box"></div>
+    <div data-id='2' class="box"></div>
+    <div data-id='3' class="box"></div>
+    <div data-id='4' class="box"></div>
+</body>
+</html>
