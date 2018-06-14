@@ -12,6 +12,4 @@ Usage:
 
 Property | description
 --- | ---
- `Jot.qs(selector [, context])` | return a single element
- `Jot.qsa(selector [, context])` | return a NodeList
- `Jot.ready(callback)` | equivalent to jQuery.ready(callback), $(callback), trigger callback when DOM is loaded
+ `Jot.element(selector [, context])` | return a single element
