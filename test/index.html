@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Teste</title>
+    <script src="/dist/js/jot.js"></script>
+
+    <script>
+        Jot.ready(function () {
+            
+            var numbers = Jot.element('.number');
+
+            numbers.prop('innerText', function (value, element, index) {
+
+                return "Processed by JOT: " + value;
+            })
+        })
+    </script>
+</head>
+<body>
+    <div class="number">1</div>
+    <div class="number">2</div>
+    <div class="text">Text</div>
+</body>
+</html>
